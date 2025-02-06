@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1 id="title">COLOR COLLECTOR</h1>
+    <!-- ポップアップのトリガーボタン -->
+    <button id="help-button" class="help-btn">使い方</button>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="sub_title">画像からカラーパレットを生成するツール</h1>
+    
+    <!-- ボタンを囲む親要素 -->
+    <div id="buttonContainer">
+        <!-- 画像アップロード -->
+        <input type="file" id="imageInput" accept="image/*">
+  
+        <!-- 解析ボタン -->
+        <button id="analyzeButton" disabled>画像を解析してカラーパレットを生成</button>
+  
+        <!-- リセットボタン -->
+        <button id="resetButton" style="display:none;">リセット</button>
+    </div>
+    <!-- キャンバス（解析用に隠れたまま使用される） -->
+    <canvas id="imageCanvas" style="display:none;"></canvas>
+
+    <!-- 画像読み込み進捗を表示するバー -->
+    <div id="loadingProgressContainer" style="display: none;">
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+        <div id="progressText">0%</div>
+    </div>
+    
+    <!-- 進捗表示 -->
+    <!-- <div id="progress">
+        <div id="progressBar"></div>
+        <span id="progressText">0%</span>
+    </div> -->
+
+    <!-- カラーパレットの表示エリア -->
+    <h2 id="paletteTitle" class="hidden">生成されたカラーパレット</h2>
+    <div id="palette"></div>
+
+    <!-- 画像表示用の領域 -->
+    <h2 id="uploadedImageTitle" class="hidden">元画像</h2>
+    <img id="uploadedImage" src="" alt="アップロードされた画像" style="display:none;">
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+<!-- ポップアップの内容 -->
+<div id="help-popup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>このツールのかんたんな使い方</h2>
+        <p>1. 画面上部の「ファイルを選択」ボタンをクリックして、
+            <br>あなたのコンピュータ内にある分析したい画像を
+            <br>アップロードします。</p>
+        <p>2. アップロードされた画像を分析し、
+            <br>その画像内を多く占める10色から
+            <br>自動的にカラーパレットが生成されます。</p>
+        <p>3. 生成された各色ボックス内には、
+            <br>カラーコード(#で始まる6ケタの数値)と
+            <br>その占有率が表示されます。</p>
+        <p>4. カラーコードをクリックすると、
+            <br>クリップボードにコピーできます。</p>
+        <p>5. 「リセット」ボタンで画像のアップロードと
+            <br>カラーパレットを初期状態に戻せます。</p>
+        <button id="close-popup" class="close-btn">閉じる</button>
+    </div>
+</div>
